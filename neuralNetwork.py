@@ -8,6 +8,10 @@ from keras.layers import Dense, Dropout, LSTM
 from keras.utils import np_utils
 from keras.callbacks import ModelCheckpoint
 
+#########################################
+# kod stąd: https://stackabuse.com/text-generation-with-python-and-tensorflow-keras/
+#########################################
+
 
 def tokenize_words(input):
     input = input.lower()

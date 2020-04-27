@@ -52,6 +52,8 @@ def generate(training_text, train, weight_file, result_length):
     model = Sequential()
     model.add(LSTM(256, input_shape=(X.shape[1], X.shape[2]), return_sequences=True))
     model.add(Dropout(0.2))
+    model.add(LSTM(512, return_sequences=True))
+    model.add(Dropout(0.2))
     model.add(LSTM(256, return_sequences=True))
     model.add(Dropout(0.2))
     model.add(LSTM(128))
@@ -61,12 +63,12 @@ def generate(training_text, train, weight_file, result_length):
     if train:
         try:
             model.load_weights(weight_file)
-        except OSError:
+        except (OSError, ValueError) as e:
             pass
         model.compile(loss='categorical_crossentropy', optimizer='adam')
         checkpoint = ModelCheckpoint(weight_file, monitor='loss', verbose=1, save_best_only=True, mode='min')
         desired_callbacks = [checkpoint]
-        model.fit(X, y, epochs=10, batch_size=256, callbacks=desired_callbacks)
+        model.fit(X, y, epochs=20, batch_size=128, callbacks=desired_callbacks)
     else:
         try:
             model.load_weights(weight_file)

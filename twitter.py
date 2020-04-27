@@ -2,6 +2,12 @@ import tweepy
 import datetime
 
 
+######################
+#pomysł z: https://github.com/minimaxir/tweet-generator/blob/master/tweet_generator.py
+#zamiast tego można spróbować to: https://github.com/bear/python-twitter
+######################
+
+
 def getTwitts(hashtag):
     # how to get conf data:
     # https://towardsdatascience.com/how-to-access-twitters-api-using-tweepy-5a13a206683b

@@ -7,7 +7,7 @@ if __name__ == '__main__':
     file = open(filename).read()
     processed_inputs = tokenize_words(file)
     # False dla samego wyniku, True dla trenowania nowych wag
-    text = generate(processed_inputs, True, 'weights.hdf5', 100)
+    text = generate(processed_inputs, False, 'weightsFrankenstein.hdf5', 100)
     print(text)
     # IDEAS TO DO TO GET BETTER RESULTS
     # increase the number of training epochs

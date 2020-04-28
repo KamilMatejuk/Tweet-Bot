@@ -14,6 +14,7 @@ from keras.callbacks import ModelCheckpoint
 
 
 def tokenize_words(input):
+    # TODO zmienić żeby akceptowało tylko [a-zA-Z']
     input = input.lower()
     tokenizer = RegexpTokenizer(r'\w+')
     tokens = tokenizer.tokenize(input)
@@ -86,6 +87,7 @@ def generate(training_text, train, weight_file, result_length):
     generated_text = ''
     for i in range(result_length):
         x = numpy.reshape(pattern, (1, len(pattern), 1))
+        x = x / vocab_len
         prediction = model.predict(x, verbose=0)
         index = numpy.argmax(prediction)
         pattern.append(index)
